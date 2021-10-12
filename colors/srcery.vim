@@ -241,6 +241,8 @@ if g:srcery_inverse == 0
   let s:inverse = ''
 endif
 
+let s:deprecated = 'strikethrough,'
+
 " }}}
 " Highlighting Function: {{{
 
@@ -1291,6 +1293,10 @@ hi! link shQuote SrceryWhite
 hi! link shRedir SrceryMagenta
 hi! link shOption SrceryBrightYellow
 hi! link shCommandSub SrceryBrightRed
+
+call s:HL('CmpItemAbbrDeprecated', s:bright_black, s:none, s:deprecated)
+call s:HL('CmpItemMenu', s:bright_black, s:none)
+hi! link CmpItemAbbrMatchFuzzy SrceryGreen
 
 " }}}
 " Misc: {{{
