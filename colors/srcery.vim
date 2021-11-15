@@ -681,6 +681,10 @@ call s:HL('LspDiagnosticsUnderlineWarning', s:bright_yellow, s:none, s:underline
 call s:HL('LspDiagnosticsUnderlineInformation', s:bright_green, s:none, s:underline)
 call s:HL('LspDiagnosticsUnderlineHint', s:bright_cyan, s:none, s:underline)
 
+call s:HL('LspReferenceText', s:white, s:green, s:underline)
+call s:HL('LspReferenceRead', s:white, s:blue, s:underline)
+call s:HL('LspReferenceWrite', s:white, s:red, s:underline)
+
 " }}}
 
 " Plugin specific -------------------------------------------------------------
