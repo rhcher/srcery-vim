@@ -31,6 +31,10 @@ if !exists('g:srcery_red')
   let g:srcery_red='#EF2F27'
 endif
 
+if !exists('g:srcery_dim_red')
+  let g:srcery_dim_red='#830f0a'
+endif
+
 if !exists('g:srcery_green')
   let g:srcery_green='#519F50'
 endif
@@ -41,6 +45,10 @@ endif
 
 if !exists('g:srcery_blue')
   let g:srcery_blue='#2C78BF'
+endif
+
+if !exists('g:srcery_dim_blue')
+  let g:srcery_dim_blue='#0087af'
 endif
 
 if !exists('g:srcery_magenta')
@@ -187,9 +195,11 @@ let s:none           = ['NONE', 'NONE']
 " 16 base colors
 let s:black          = [g:srcery_black, 0]
 let s:red            = [g:srcery_red, 1]
+let s:dim_red        = [g:srcery_dim_red, 88]
 let s:green          = [g:srcery_green, 2]
 let s:yellow         = [g:srcery_yellow, 3]
 let s:blue           = [g:srcery_blue, 4]
+let s:dim_blue       = [g:srcery_dim_blue, 67]
 let s:magenta        = [g:srcery_magenta, 5]
 let s:cyan           = [g:srcery_cyan, 6]
 let s:white          = [g:srcery_white, 7]
@@ -676,14 +686,16 @@ hi! link LspDiagnosticsDefaultError SrceryBrightRed
 hi! link LspDiagnosticsDefaultWarning SrceryBrightYellow
 hi! link LspDiagnosticsDefaultInformation SrceryBrightGreen
 hi! link LspDiagnosticsDefaultHint SrceryBrightCyan
+hi! link LspCodeLens Comment
+hi! link LspCodeLensSeparator Comment
 call s:HL('LspDiagnosticsUnderlineError', s:bright_red, s:none, s:underline)
 call s:HL('LspDiagnosticsUnderlineWarning', s:bright_yellow, s:none, s:underline)
 call s:HL('LspDiagnosticsUnderlineInformation', s:bright_green, s:none, s:underline)
 call s:HL('LspDiagnosticsUnderlineHint', s:bright_cyan, s:none, s:underline)
 
-call s:HL('LspReferenceText', s:white, s:green, s:underline)
-call s:HL('LspReferenceRead', s:white, s:blue, s:underline)
-call s:HL('LspReferenceWrite', s:white, s:red, s:underline)
+call s:HL('LspReferenceText', s:none, s:xgray5, s:underline)
+call s:HL('LspReferenceRead', s:none, s:dim_blue, s:underline)
+call s:HL('LspReferenceWrite', s:bright_white, s:dim_red, s:underline)
 
 " }}}
 
@@ -695,75 +707,10 @@ call s:HL('SneakScope', s:none, s:hard_black)
 hi! link SneakLabel Search
 
 " }}}
-" Rainbow Parentheses: {{{
-
-if !exists('g:rbpt_colorpairs')
-  let g:rbpt_colorpairs =
-    \ [
-      \ ['blue',  '#2C78BF'], ['202',  '#FF5F00'],
-      \ ['red',  '#EF2F27'], ['magenta', '#E02C6D']
-    \ ]
-endif
-
-let g:rainbow_guifgs = [ '#E02C6D', '#EF2F27', '#D75F00', '#2C78BF']
-let g:rainbow_ctermfgs = [ 'magenta', 'red', '202', 'blue' ]
-
-if !exists('g:rainbow_conf')
-  let g:rainbow_conf = {}
-endif
-if !has_key(g:rainbow_conf, 'guifgs')
-  let g:rainbow_conf['guifgs'] = g:rainbow_guifgs
-endif
-if !has_key(g:rainbow_conf, 'ctermfgs')
-  let g:rainbow_conf['ctermfgs'] = g:rainbow_ctermfgs
-endif
-
-let g:niji_dark_colours = g:rbpt_colorpairs
-let g:niji_light_colours = g:rbpt_colorpairs
-
-"}}}
-" GitGutter: {{{
-
-hi! link GitGutterAdd SrceryGreen
-hi! link GitGutterChange SrceryYellow
-hi! link GitGutterDelete SrceryRed
-hi! link GitGutterChangeDelete SrceryYellow
-
-" }}}
-" GitCommit: "{{{
-
-hi! link gitcommitSelectedFile SrceryGreen
-hi! link gitcommitDiscardedFile SrceryRed
-
-" }}}
-" Asynchronous Lint Engine: {{{
-
-call s:HL('ALEError', s:none, s:none, s:undercurl, s:red)
-call s:HL('ALEWarning', s:none, s:none, s:undercurl, s:yellow)
-call s:HL('ALEInfo', s:none, s:none, s:undercurl, s:blue)
-
-hi! link ALEErrorSign SrceryRed
-hi! link ALEWarningSign SrceryYellow
-hi! link ALEInfoSign SrceryBlue
-
-" }}}
 " vim-indent-guides: {{{
 
 call s:HL('IndentGuidesEven', s:none, s:xgray3)
 call s:HL('IndentGuidesOdd',  s:none, s:xgray4)
-
-" }}}
-" vim-startify {{{
-
-hi! link StartifyNumber Statement
-hi! link StartifyFile Normal
-hi! link StartifyPath String
-hi! link StartifySlash Normal
-hi! link StartifyBracket Comment
-hi! link StartifyHeader Type
-hi! link StartifyFooter Normal
-hi! link StartifySpecial Comment
-hi! link StartifySection Identifier
 
 " }}}
 " fzf: {{{
@@ -773,70 +720,6 @@ call s:HL('fzf2', s:bright_green, s:xgray2)
 call s:HL('fzf3', s:bright_white, s:xgray2)
 
 "}}}
-" Netrw: {{{
-
-hi! link netrwDir SrceryBlue
-hi! link netrwClassify SrceryCyan
-hi! link netrwLink SrceryBrightBlack
-hi! link netrwSymLink SrceryCyan
-hi! link netrwExe SrceryYellow
-hi! link netrwComment SrceryBrightBlack
-hi! link netrwList SrceryBrightBlue
-hi! link netrwTreeBar SrceryBrightBlack
-hi! link netrwHelpCmd SrceryCyan
-hi! link netrwVersion SrceryGreen
-hi! link netrwCmdSep SrceryBrightBlack
-
-"}}}
-" coc.nvim: {{{
-
-hi! link CocErrorSign SrceryRed
-hi! link CocWarningSign SrceryBrightOrange
-hi! link CocInfoSign SrceryYellow
-hi! link CocHintSign SrceryBlue
-hi! link CocErrorFloat SrceryRed
-hi! link CocWarningFloat SrceryOrange
-hi! link CocInfoFloat SrceryYellow
-hi! link CocHintFloat SrceryBlue
-hi! link CocDiagnosticsError SrceryRed
-hi! link CocDiagnosticsWarning SrceryOrange
-hi! link CocDiagnosticsInfo SrceryYellow
-hi! link CocDiagnosticsHint SrceryBlue
-
-hi! link CocSelectedText SrceryRed
-hi! link CocCodeLens SrceryWhite
-
-call s:HL('CocErrorHighlight', s:none, s:none, s:undercurl, s:red)
-call s:HL('CocWarningHighlight', s:none, s:none, s:undercurl, s:bright_orange)
-call s:HL('CocInfoHighlight', s:none, s:none, s:undercurl, s:yellow)
-call s:HL('CocHintHighlight', s:none, s:none, s:undercurl, s:blue)
-
-" }}}
-" CtrlP: "{{{
-"
-hi! link CtrlPMatch SrceryMagenta
-hi! link CtrlPLinePre SrceryBrightGreen
-call s:HL('CtrlPMode1', s:bright_white, s:xgray3)
-call s:HL('CtrlPMode2', s:bright_white, s:xgray5)
-call s:HL('CtrlPStats', s:yellow, s:xgray2)
-
-" }}}
-" NERDTree: "{{{
-
-hi! link NERDTreeDir SrceryBlue
-hi! link NERDTreeDirSlash SrceryCyan
-hi! link NERDTreeOpenable SrceryBlue
-hi! link NERDTreeClosable SrceryBlue
-hi! link NERDTreeFile SrceryWhite
-hi! link NERDTreeExecFile SrceryYellow
-hi! link NERDTreeUp SrceryOrange
-hi! link NERDTreeCWD SrceryGreen
-hi! link NERDTreeHelp SrceryCyan
-hi! link NERDTreeFlags SrceryCyan
-hi! link NERDTreeLinkFile SrceryBrightBlack
-hi! link NERDTreeLinkTarget SrceryBrightBlack
-
-" }}}
 " Telescope: "{{{
 
 call s:HL('TelescopeNormal', s:white, s:none)
@@ -884,67 +767,6 @@ hi! link diffFile SrceryOrange
 hi! link diffNewFile SrceryYellow
 
 hi! link diffLine SrceryBlue
-
-" }}}
-" Html: {{{
-
-hi! link htmlTag SrceryBlue
-hi! link htmlEndTag SrceryBlue
-
-hi! link htmlTagName SrceryBlue
-hi! link htmlTag SrceryBrightBlack
-hi! link htmlArg SrceryYellow
-
-hi! link htmlScriptTag SrceryRed
-hi! link htmlTagN SrceryBlue
-hi! link htmlSpecialTagName SrceryBlue
-
-call s:HL('htmlLink', s:bright_white, s:none, s:underline)
-
-hi! link htmlSpecialChar SrceryYellow
-
-if g:srcery_bg_passthrough == 1 && !has('gui_running')
-  call s:HL('htmlBold', s:bright_white, s:none, s:bold)
-  call s:HL('htmlBoldUnderline', s:bright_white, s:none, s:bold . s:underline)
-  call s:HL('htmlBoldItalic', s:bright_white, s:none, s:bold . s:italic)
-  call s:HL('htmlBoldUnderlineItalic', s:bright_white, s:none, s:bold . s:underline . s:italic)
-  call s:HL('htmlUnderline', s:bright_white, s:none, s:underline)
-  call s:HL('htmlUnderlineItalic', s:bright_white, s:none, s:underline . s:italic)
-  call s:HL('htmlItalic', s:bright_white, s:none, s:italic)
-else
-  call s:HL('htmlBold', s:bright_white, s:black, s:bold)
-  call s:HL('htmlBoldUnderline', s:bright_white, s:black, s:bold . s:underline)
-  call s:HL('htmlBoldItalic', s:bright_white, s:black, s:bold . s:italic)
-  call s:HL('htmlBoldUnderlineItalic', s:bright_white, s:black, s:bold . s:underline . s:italic)
-  call s:HL('htmlUnderline', s:bright_white, s:black, s:underline)
-  call s:HL('htmlUnderlineItalic', s:bright_white, s:black, s:underline . s:italic)
-  call s:HL('htmlItalic', s:bright_white, s:black, s:italic)
-endif
-
-" }}}
-" Xml: {{{
-
-hi! link xmlTag SrceryBlue
-hi! link xmlEndTag SrceryBlue
-hi! link xmlTagName SrceryBlue
-hi! link xmlEqual SrceryBlue
-hi! link docbkKeyword SrceryCyanBold
-
-hi! link xmlDocTypeDecl SrceryBrightBlack
-hi! link xmlDocTypeKeyword SrceryMagenta
-hi! link xmlCdataStart SrceryBrightBlack
-hi! link xmlCdataCdata SrceryMagenta
-hi! link dtdFunction SrceryBrightBlack
-hi! link dtdTagName SrceryMagenta
-
-hi! link xmlAttrib SrceryCyan
-hi! link xmlProcessingDelim SrceryBrightBlack
-hi! link dtdParamEntityPunct SrceryBrightBlack
-hi! link dtdParamEntityDPunct SrceryBrightBlack
-hi! link xmlAttribPunct SrceryBrightBlack
-
-hi! link xmlEntity SrceryYellow
-hi! link xmlEntityPunct SrceryYellow
 
 " }}}
 " Vim: {{{
@@ -1020,182 +842,11 @@ hi! link pythonBoolean SrceryMagenta
 hi! link pythonDot SrceryBrightWhite
 
 " }}}
-" CSS/SASS: {{{
-
-hi! link cssBraces SrceryBrightWhite
-hi! link cssFunctionName SrceryYellow
-hi! link cssIdentifier SrceryBlue
-hi! link cssClassName SrceryBlue
-hi! link cssClassNameDot SrceryBlue
-hi! link cssColor SrceryBrightMagenta
-hi! link cssSelectorOp SrceryBlue
-hi! link cssSelectorOp2 SrceryBlue
-hi! link cssImportant SrceryGreen
-hi! link cssVendor SrceryBlue
-hi! link cssMediaProp SrceryYellow
-hi! link cssBorderProp SrceryYellow
-hi! link cssAttrComma SrceryBrightWhite
-
-hi! link cssTextProp SrceryYellow
-hi! link cssAnimationProp SrceryYellow
-hi! link cssUIProp SrceryYellow
-hi! link cssTransformProp SrceryYellow
-hi! link cssTransitionProp SrceryYellow
-hi! link cssPrintProp SrceryYellow
-hi! link cssPositioningProp SrceryYellow
-hi! link cssBoxProp SrceryYellow
-hi! link cssFontDescriptorProp SrceryYellow
-hi! link cssFlexibleBoxProp SrceryYellow
-hi! link cssBorderOutlineProp SrceryYellow
-hi! link cssBackgroundProp SrceryYellow
-hi! link cssMarginProp SrceryYellow
-hi! link cssListProp SrceryYellow
-hi! link cssTableProp SrceryYellow
-hi! link cssFontProp SrceryYellow
-hi! link cssPaddingProp SrceryYellow
-hi! link cssDimensionProp SrceryYellow
-hi! link cssRenderProp SrceryYellow
-hi! link cssColorProp SrceryYellow
-hi! link cssGeneratedContentProp SrceryYellow
-hi! link cssTagName SrceryBrightBlue
-
-" SASS
-hi! link sassClass SrceryBlue
-hi! link sassClassChar SrceryBlue
-hi! link sassVariable SrceryCyan
-hi! link sassIdChar SrceryBrightBlue
-hi! link sassId SrceryBrightBlue
-
-" }}}
-" JavaScript: {{{
-
-hi! link javascriptMember SrceryBlue
-hi! link javascriptNull SrceryMagenta
-
-hi! link javascriptParens SrceryWhite
-hi! link javascriptBraces SrceryWhite
-hi! link javascriptReserved SrceryOrange
-hi! link javascriptIdentifier SrceryRed
-
-hi! link javascriptFuncArg Normal
-hi! link javascriptDocComment SrceryGreen
-hi! link javascriptArrayMethod Function
-hi! link javascriptReflectMethod Function
-hi! link javascriptStringMethod Function
-hi! link javascriptObjectMethod Function
-hi! link javascriptObjectStaticMethod Function
-hi! link javascriptObjectLabel SrceryBlue
-hi! link javascriptFunction SrceryRed
-
-hi! link javascriptProp SrceryBlue
-
-hi! link javascriptVariable SrceryBrightBlue
-hi! link javascriptOperator SrceryBrightCyan
-hi! link javascriptFuncKeyword SrceryBrightRed
-hi! link javascriptFunctionMethod SrceryYellow
-hi! link javascriptReturn SrceryBrightRed
-hi! link javascriptEndColons SrceryWhite
-
-" vim-javascript
-hi! link jsFunction SrceryRed
-hi! link jsImport SrceryRed
-hi! link jsObjectSeparator SrceryWhite
-hi! link jsParens SrceryWhite
-hi! link jsFuncParens SrceryWhite
-hi! link jsNoise SrceryWhite
-hi! link jsEnvComment SrceryBrightBlack
-hi! link jsOperator SrceryBrightCyan
-
-" }}}
-" CoffeeScript: {{{
-
-hi! link coffeeExtendedOp SrceryBrightWhite
-hi! link coffeeSpecialOp SrceryBrightWhite
-hi! link coffeeCurly SrceryYellow
-hi! link coffeeParen SrceryBrightWhite
-hi! link coffeeBracket SrceryYellow
-
-" }}}
-" Ruby: {{{
-
-hi! link rubyStringDelimiter SrceryGreen
-hi! link rubyInterpolationDelimiter SrceryCyan
-hi! link rubyDefine Keyword
-
-" }}}
-" ObjectiveC: {{{
-
-hi! link objcTypeModifier SrceryRed
-hi! link objcDirective SrceryBlue
-
-" }}}
-" Go: {{{
-
-hi! link goDirective SrceryCyan
-hi! link goConstants SrceryMagenta
-hi! link goDeclaration SrceryRed
-hi! link goDeclType SrceryBlue
-hi! link goBuiltins SrceryYellow
-
-" }}}
 " Lua: {{{
 
 hi! link luaIn SrceryRed
 hi! link luaFunction SrceryCyan
 hi! link luaTable SrceryYellow
-
-" }}}
-" MoonScript: {{{
-
-hi! link moonSpecialOp SrceryBrightWhite
-hi! link moonExtendedOp SrceryBrightWhite
-hi! link moonFunction SrceryBrightWhite
-hi! link moonObject SrceryYellow
-
-" }}}
-" Java: {{{
-
-hi! link javaAnnotation SrceryBlue
-hi! link javaDocTags SrceryCyan
-hi! link javaCommentTitle vimCommentTitle
-hi! link javaParen SrceryBrightWhite
-hi! link javaParen1 SrceryBrightWhite
-hi! link javaParen2 SrceryBrightWhite
-hi! link javaParen3 SrceryBrightWhite
-hi! link javaParen4 SrceryBrightWhite
-hi! link javaParen5 SrceryBrightWhite
-hi! link javaOperator SrceryYellow
-
-hi! link javaVarArg SrceryGreen
-
-" }}}
-" Elixir: {{{
-
-hi! link elixirDocString Comment
-
-hi! link elixirStringDelimiter SrceryGreen
-hi! link elixirInterpolationDelimiter SrceryCyan
-
-" }}}
-" Scala: {{{
-
-" NB: scala vim syntax file is kinda horrible
-hi! link scalaNameDefinition SrceryBlue
-hi! link scalaCaseFollowing SrceryBlue
-hi! link scalaCapitalWord SrceryBlue
-hi! link scalaTypeExtension SrceryBlue
-
-hi! link scalaKeyword SrceryRed
-hi! link scalaKeywordModifier SrceryRed
-
-hi! link scalaSpecial SrceryCyan
-hi! link scalaOperator SrceryBlue
-
-hi! link scalaTypeDeclaration SrceryYellow
-hi! link scalaTypeTypePostDeclaration SrceryYellow
-
-hi! link scalaInstanceDeclaration SrceryBlue
-hi! link scalaInterpolation SrceryCyan
 
 " }}}
 " Markdown: {{{
@@ -1298,10 +949,15 @@ hi! link shRedir SrceryMagenta
 hi! link shOption SrceryBrightYellow
 hi! link shCommandSub SrceryBrightRed
 
+hi! link CmpItemAbbr SrceryBrightBlack
 call s:HL('CmpItemAbbrDeprecated', s:bright_black, s:none, s:deprecated)
-call s:HL('CmpItemMenu', s:bright_black, s:none)
-hi! link CmpItemAbbrMatchFuzzy SrceryGreen
+hi! link CmpItemAbbrMatch SrceryBrightWhite
+hi! link CmpItemMenu SrceryWhite
+hi! link CmpItemKind SrceryYellow
+hi! link CmpItemAbbrMatchFuzzy SrceryBrightGreen
 
+
+call s:HL('MatchWord', s:none, s:none)
 " }}}
 " Misc: {{{
 
