@@ -571,7 +571,7 @@ hi! link Label SrceryRed
 " try, catch, throw
 hi! link Exception SrceryRed
 " sizeof, "+", "*", etc.
-hi! link Operator Normal
+hi! link Operator SrceryWhite
 " Any other keyword
 hi! link Keyword SrceryRed
 
@@ -636,8 +636,8 @@ if v:version >= 700
     " Popup menu: scrollbar thumb
     call s:HL('PmenuThumb', s:none, s:none)
   else
-    call s:HL('PmenuSbar', s:none, s:black)
-    call s:HL('PmenuThumb', s:none, s:black)
+    call s:HL('PmenuSbar', s:none, s:xgray1)
+    call s:HL('PmenuThumb', s:none, s:xgray6)
   endif
 endif
 
@@ -694,7 +694,7 @@ call s:HL('LspDiagnosticsUnderlineInformation', s:bright_green, s:none, s:underl
 call s:HL('LspDiagnosticsUnderlineHint', s:bright_cyan, s:none, s:underline)
 
 call s:HL('LspReferenceText', s:none, s:xgray5, s:underline)
-call s:HL('LspReferenceRead', s:none, s:dim_blue, s:underline)
+call s:HL('LspReferenceRead', s:bright_white, s:dim_blue, s:underline)
 call s:HL('LspReferenceWrite', s:bright_white, s:dim_red, s:underline)
 
 " }}}
@@ -742,6 +742,8 @@ highlight! link TSField SrceryGreen
 highlight! link TSFuncBuiltin SrceryYellow
 highlight! link TSFuncMacro SrceryOrange
 highlight! link TSFunction SrceryYellow
+highlight! link TSMethod SrceryYellow
+highlight! link TSConstant SrceryCyan
 call s:HL('TSNamespace', s:white, s:none, s:italic)
 call s:HL('TSParameter', s:cyan, s:none, s:italic)
 highlight! link TSProperty SrceryBrightBlue
@@ -752,7 +754,8 @@ highlight! link TSVariableBuiltin SrceryCyan
 highlight! link TSType SrceryWhite
 highlight! link TSDelimiter SrceryWhite
 highlight! link TSURI SrceryGreen
-highlight! link TSVariable SrceryBrightWhite
+" highlight! link TSVariable SrceryBrightWhite
+highlight! link TSConstructor SrceryYellow
 " }}}
 
 
@@ -893,7 +896,7 @@ hi! link haskellType SrceryBlue
 hi! link haskellIdentifier SrceryBlue
 hi! link haskellSeparator SrceryBlue
 hi! link haskellDelimiter SrceryBrightWhite
-hi! link haskellOperators SrceryBlue
+hi! link haskellOperators SrceryWhite
 
 hi! link haskellBacktick SrceryYellow
 hi! link haskellStatement SrceryYellow
@@ -958,6 +961,7 @@ hi! link CmpItemAbbrMatchFuzzy SrceryBrightGreen
 
 
 call s:HL('MatchWord', s:none, s:none)
+hi! link IndentBlanklineChar Comment
 " }}}
 " Misc: {{{
 
