@@ -583,7 +583,7 @@ hi! link Function SrceryYellow
 " Generic preprocessor
 hi! link PreProc SrceryCyan
 " Preprocessor #include
-hi! link Include SrceryCyan
+hi! link Include SrceryBlue
 " Preprocessor #define
 hi! link Define SrceryCyan
 " Same as Define
@@ -754,7 +754,7 @@ highlight! link TSVariableBuiltin SrceryCyan
 highlight! link TSType SrceryWhite
 highlight! link TSDelimiter SrceryWhite
 highlight! link TSURI SrceryGreen
-" highlight! link TSVariable SrceryBrightWhite
+highlight! link TSVariable SrceryBrightWhite
 highlight! link TSConstructor SrceryYellow
 " }}}
 
@@ -893,7 +893,7 @@ hi! link markdownIdDeclaration markdownLinkText
 " hi! link haskellLet SrceryYellow
 
 hi! link haskellType SrceryBlue
-hi! link haskellIdentifier SrceryBlue
+hi! link haskellIdentifier SrceryOrange
 hi! link haskellSeparator SrceryBlue
 hi! link haskellDelimiter SrceryBrightWhite
 hi! link haskellOperators SrceryWhite
