@@ -434,9 +434,9 @@ if v:version >= 700
   " Match paired bracket under the cursor
   "
   if g:srcery_inverse_match_paren == 1
-    call s:HL('MatchParen', s:bright_magenta, s:none, s:inverse . s:bold)
+    call s:HL('MatchParen', s:bright_blue, s:none, s:inverse . s:bold)
   else
-    call s:HL('MatchParen', s:bright_magenta, s:none, s:bold)
+    call s:HL('MatchParen', s:bright_blue, s:none, s:bold)
   endif
 endif
 
