@@ -961,6 +961,7 @@ hi! link CmpItemAbbrMatchFuzzy SrceryBrightGreen
 
 
 call s:HL('MatchWord', s:none, s:none)
+call s:HL('CodiVirtualText', s:bright_black, s:none, s:bold)
 hi! link IndentBlanklineChar Comment
 " }}}
 " Misc: {{{
