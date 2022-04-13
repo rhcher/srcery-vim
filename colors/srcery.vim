@@ -460,9 +460,9 @@ hi! link NonText SrceryXgray4
 hi! link SpecialKey SrceryBlue
 
 if g:srcery_inverse == 1
-  call s:HL('Visual', s:none, s:none, s:inverse)
+  call s:HL('Visual', s:none, s:xgray5)
 else
-  call s:HL('Visual', s:none, s:xgray2, s:bold)
+  call s:HL('Visual', s:none, s:xgray2)
 endif
 
 hi! link VisualNOS Visual
