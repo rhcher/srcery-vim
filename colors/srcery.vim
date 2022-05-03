@@ -555,7 +555,7 @@ else
   call s:HL('Todo', s:bright_white, s:black, s:bold . s:italic)
 endif
 
-call s:HL('Error', s:bright_white, s:red, s:bold)
+call s:HL('Error', s:red, s:none, s:bold)
 
 " String constant: "this is a string"
 call s:HL('String',  s:bright_green)
@@ -626,7 +626,7 @@ endif
 
 if v:version >= 700
   " Popup menu: normal item
-  call s:HL('Pmenu', s:bright_white, s:xgray2)
+  call s:HL('Pmenu', s:bright_white, s:none)
   " Popup menu: selected item
   call s:HL('PmenuSel', s:bright_white, s:blue, s:bold)
 
