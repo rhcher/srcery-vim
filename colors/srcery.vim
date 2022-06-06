@@ -416,7 +416,7 @@ endif
 if g:srcery_bg_passthrough == 1 && !has('gui_running')
   call s:HL('Normal', s:bright_white, s:none)
  else
-  call s:HL('Normal', s:bright_white, s:black)
+  call s:HL('Normal', s:bright_white, s:none)
 endif
 
 if v:version >= 700
@@ -825,7 +825,7 @@ hi! link clojureUnquote SrceryYellow
 " C: {{{
 
 hi! link cOperator SrceryMagenta
-hi! link cStructure SrceryYellow
+hi! link cStructure SrceryRed
 
 " }}}
 " Python: {{{
@@ -962,6 +962,11 @@ hi! link CmpItemAbbrMatchFuzzy SrceryBrightGreen
 
 call s:HL('MatchWord', s:none, s:none)
 call s:HL('CodiVirtualText', s:bright_black, s:none, s:bold)
+
+call s:HL('LspCxxHlGroupMemberVariable', s:bright_white, s:none)
+call s:HL('LspCxxHlSymVariable', s:white)
+call s:HL('LspCxxHlSymParameter', s:white)
+
 hi! link IndentBlanklineChar Comment
 " }}}
 " Misc: {{{
