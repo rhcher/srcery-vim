@@ -697,6 +697,10 @@ call s:HL('LspReferenceText', s:none, s:xgray5, s:underline)
 call s:HL('LspReferenceRead', s:bright_white, s:dim_blue, s:underline)
 call s:HL('LspReferenceWrite', s:bright_white, s:dim_red, s:underline)
 
+hi! link IlluminatedWordText LspReferenceText
+hi! link IlluminatedWordRead LspReferenceRead
+hi! link IlluminatedWordWrite LspReferenceWrite
+
 " }}}
 
 " Plugin specific -------------------------------------------------------------
