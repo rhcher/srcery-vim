@@ -735,31 +735,31 @@ call s:HL('TelescopePromptPrefix', s:bright_yellow)
 " }}}
 " nvim-treesitter {{{
 
-call s:HL('TSStrong', s:none, s:none, s:bold)
-call s:HL('TSEmphasis', s:none, s:none, s:bold)
-call s:HL('TSUnderline', s:none, s:none, s:underline)
+call s:HL('@Strong', s:none, s:none, s:bold)
+call s:HL('@Emphasis', s:none, s:none, s:bold)
+call s:HL('@Underline', s:none, s:none, s:underline)
 
-highlight! link TSWarning SrceryOrangeBold
-highlight! link TSDanger SrceryRedBold
-highlight! link TSConstBuiltin SrceryCyan
-highlight! link TSField SrceryGreen
-highlight! link TSFuncBuiltin SrceryYellow
-highlight! link TSFuncMacro SrceryOrange
-highlight! link TSFunction SrceryYellow
-highlight! link TSMethod SrceryYellow
-highlight! link TSConstant SrceryCyan
-call s:HL('TSNamespace', s:white, s:none, s:italic)
-call s:HL('TSParameter', s:cyan, s:none, s:italic)
-highlight! link TSProperty SrceryBrightBlue
-highlight! link TSSymbol SrceryBlue
-highlight! link TSTag SrceryBlue
-highlight! link TSTagAttribute SrceryYellow
-highlight! link TSVariableBuiltin SrceryCyan
-highlight! link TSType SrceryWhite
-highlight! link TSDelimiter SrceryWhite
-highlight! link TSURI SrceryGreen
-highlight! link TSVariable SrceryBrightWhite
-highlight! link TSConstructor SrceryYellow
+highlight! link @Warning SrceryOrangeBold
+highlight! link @Danger SrceryRedBold
+highlight! link @constant.builtin SrceryCyan
+highlight! link @field SrceryGreen
+" highlight! link @function.builtin SrceryYellow
+highlight! link @function.macro SrceryOrange
+highlight! link @function SrceryYellow
+highlight! link @method SrceryYellow
+highlight! link @constant SrceryCyan
+call s:HL('@namespace', s:white, s:none, s:italic)
+call s:HL('@parameter', s:cyan, s:none, s:italic)
+highlight! link @property SrceryBrightBlue
+highlight! link @symbol SrceryBlue
+highlight! link @tag SrceryBlue
+highlight! link @tag.attribute SrceryYellow
+highlight! link @variable.builtin SrceryCyan
+highlight! link @type SrceryWhite
+highlight! link @punctuation.delimiter SrceryWhite
+highlight! link @text.uri SrceryGreen
+highlight! link @variable SrceryBrightWhite
+highlight! link @constructor SrceryYellow
 " }}}
 
 
